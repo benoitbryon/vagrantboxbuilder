@@ -2,6 +2,7 @@
 """Scripts."""
 from optparse import OptionParser
 import os
+import shutil
 
 from utils import execute_command, use_temp_dir
 
@@ -81,14 +82,21 @@ class VagrantBoxBuilder(object):
 
     def package_box(self):
         """Package Vagrant box."""
+        # Create output directory if necessary.
         dirname = os.path.dirname(self.options['vagrant_box'])
         if not os.path.exists(dirname):
             os.makedirs(dirname)
-        arguments = ['--base %(vm_id)s', '--output %(vagrant_box)s']
-        if self.options['vagrant_file']:
-            arguments.append('--vagrantfile %(vagrant_file)s')
-        command = 'vagrant package %s' % ' '.join(arguments)
-        execute_command(command % self.options)
+        with use_temp_dir() as temp_output_dir:
+            temp_output_file = os.path.join(temp_output_dir, 'package.box')
+            arguments = []
+            arguments.append('--base %(vm_id)s' % self.options)
+            arguments.append('--output %s' % temp_output_file)
+            if self.options['vagrant_file']:
+                arguments.append('--vagrantfile %(vagrant_file)s' \
+                                 % self.options)
+            command = 'vagrant package %s' % ' '.join(arguments)
+            execute_command(command)
+            shutil.copy2(temp_output_file, self.options['vagrant_box'])
 
 
 def main():
@@ -96,28 +104,36 @@ def main():
     builder = VagrantBoxBuilder()
     parser.add_option('--vm-os-type', default=builder.options['vm_os_type'],
                       dest='vm_os_type',
-                      help="VM os type. See ``VBoxManage list ostypes``.")
+                      help="VM os type. See ``VBoxManage list ostypes``. " \
+                           "Default is \"%s\"." % builder.options['vm_os_type'])
     parser.add_option('--vm-vram', default=builder.options['vm_vram'],
                       dest='vm_vram',
-                      help="VM video memory (vram) size, in megabytes.")
+                      help="VM video memory (vram) size, in megabytes. " \
+                           "Default is \"%d\"." % builder.options['vm_vram'])
     parser.add_option('--vm-ram', default=builder.options['vm_ram'],
                       dest='vm_ram',
-                      help="VM memory (RAM) size, in megabytes.")
+                      help="VM memory (RAM) size, in megabytes. " \
+                           "Default is \"%d\"." % builder.options['vm_ram'])
     parser.add_option('--vm-cpus', default=builder.options['vm_cpus'],
                       dest='vm_cpus',
-                      help="VM number of CPUs.")
+                      help="VM number of CPUs. " \
+                           "Default is \"%d\"." % builder.options['vm_cpus'])
     parser.add_option('--vm-disk-size', default=builder.options['vm_disk_size'],
                       dest='vm_disk_size',
-                      help="VM disk (HDD) size, in megabytes.")
+                      help="VM disk (HDD) size, in megabytes. " \
+                           "Default is \"%d\"." % builder.options['vm_disk_size'])
     parser.add_option('--iso', default=builder.options['installer_iso'],
                       dest='installer_iso',
-                      help="Path to operating system's installer ISO.")
+                      help="Path to operating system's installer ISO. " \
+                           "Default is \"%s\"." % builder.options['installer_iso'])
     parser.add_option('--vagrant-file', default=builder.options['vagrant_file'],
                       dest='vagrant_file',
-                      help="Path to Vagrantfile.")
+                      help="Path to Vagrantfile. " \
+                           "Default is \"%s\"." % builder.options['vagrant_file'])
     parser.add_option('--vagrant-box', default=builder.options['vagrant_box'],
                       dest='vagrant_box',
-                      help="Path for the output box file.")
+                      help="Path for the output box file. " \
+                           "Default is \"%s\"." % builder.options['vagrant_box'])
     (options, args) = parser.parse_args()
     for option in ['vm_os_type', 'vm_vram', 'vm_ram', 'vm_cpus',
                    'vm_disk_size', 'installer_iso', 'vagrant_file',

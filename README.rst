@@ -26,10 +26,9 @@ Usage
 * Get or create an operating system ISO which installs Vagrant requirements. As
   an example, you can use `marmelune.debianisobuilder`_'s and its `preseed file
   for Vagrant`_.
-* Optionally get or create a `Vagrantfile`_. As an example, use the `sample
-  Vagrantfile`_ at marmelune.vagrantboxbuilder.
+* Or see ``vagrantboxbuilder --help`` for usage.
 * Run
-  ``vagrantboxbuilder --iso=path/to/installer.iso --vagrant-file=path/to/Vagrantfile --vagrant-box=path/to/output.box``
+  ``vagrantboxbuilder --iso=path/to/installer.iso --vagrant-box=path/to/output.box``
 * You got a .box file.
 
 
@@ -47,6 +46,9 @@ Vagrantboxbuilder...
 * packages the box.
 * destroys the temporary VM from VirtualBox.
 
+Customization of the VM for Vagrant is supposed to be fully performed during
+OS installation, i.e. the ISO file contains it all! That's why we suggest
+tools like `marmelune.debianisobuilder`_ to get the ISO.
 
 **********
 Contribute
@@ -66,17 +68,17 @@ Contribute
 References
 **********
 
-.. `Vagrant base boxes`: http://vagrantup.com/v1/docs/base_boxes.html
-.. `Code repository`:
+.. target-note::
+
+.. _`Vagrant base boxes`: http://vagrantup.com/v1/docs/base_boxes.html
+.. _`Code repository`:
     https://github.com/benoitbryon/marmelune.vagrantboxbuilder
-.. `Bugtracker`: 
+.. _`Bugtracker`:
     https://github.com/benoitbryon/marmelune.vagrantboxbuilder/issues
-.. `VirtualBox`: https://www.virtualbox.org/
-.. `Vagrant`: http://vagrantup.com/
-.. `marmelune.debianisobuilder`:
+.. _`VirtualBox`: https://www.virtualbox.org/
+.. _`Vagrant`: http://vagrantup.com/
+.. _`marmelune.debianisobuilder`:
     https://github.com/benoitbryon/marmelune.debianisobuilder
-.. `preseed file for Vagrant`:
+.. _`preseed file for Vagrant`:
    https://raw.github.com/benoitbryon/marmelune.debianisobuilder/master/etc/preseed-squeeze-vagrant-fr.cfg
-.. `Vagrantfile`: http://vagrantup.com/v1/docs/vagrantfile.html
-.. `sample Vagrantfile`:  
-   https://raw.github.com/benoitbryon/marmelune.vagrantboxbuilder/master/etc/Vagrantfile
+.. _`Vagrantfile`: http://vagrantup.com/v1/docs/vagrantfile.html
