@@ -11,10 +11,15 @@ def read_relative_file(filename):
         return f.read()
 
 
-setup(name='marmelune.vagrantboxbuilder',
-      version=read_relative_file('version.txt').strip(),
+README = read_relative_file('README.rst')
+VERSION = read_relative_file('version.txt').strip()
+NAME = 'marmelune.vagrantboxbuilder'
+
+
+setup(name=NAME,
+      version=VERSION,
       description='Automate creation of Vagrant base boxes',
-      long_description=read_relative_file('README.rst'),
+      long_description=README,
       classifiers=['Development Status :: 1 - Planning'
                    'License :: OSI Approved :: BSD License',
                    'Programming Language :: Python :: 2.7',
@@ -22,7 +27,7 @@ setup(name='marmelune.vagrantboxbuilder',
       keywords='VirtualBox Vagrant',
       author='Benoit Bryon',
       author_email='benoit@marmelune.net',
-      url='https://github.com/benoitbryon/marmelune.vagrantboxbuilder',
+      url='https://github.com/benoitbryon/%s' % NAME,
       license='BSD',
       namespace_packages=['marmelune'],
       packages=['marmelune'],
@@ -31,7 +36,7 @@ setup(name='marmelune.vagrantboxbuilder',
       install_requires=[],
       entry_points={
           'console_scripts': [
-              'vagrantboxbuilder = marmelune.vagrantboxbuilder.scripts:main',
+              'vagrantboxbuilder = %s.scripts:main' % NAME,
           ]
       },
       )
