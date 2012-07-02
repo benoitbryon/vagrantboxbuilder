@@ -2,6 +2,7 @@
 """Scripts."""
 from optparse import OptionParser
 import os
+import random
 import shutil
 
 from utils import execute_command, use_temp_dir
@@ -10,8 +11,9 @@ from utils import execute_command, use_temp_dir
 class VagrantBoxBuilder(object):
     """Vagrant box builder."""
     def __init__(self):
+        random_id = int(random.random() * 10**8)
         self.options = {
-            'vm_id': 'tmp_vagrant_1a2b3c4d5e6f7g8h9i',
+            'vm_id': 'tmp_vagrant_%d' % random_id,
             'vm_os_type': 'Debian_64',
             'vm_folder': 'var/vm',
             'vm_vram': 16,
