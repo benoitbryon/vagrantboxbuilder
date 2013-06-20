@@ -1,6 +1,6 @@
-###########################
-marmelune.vagrantboxbuilder
-###########################
+#################
+vagrantboxbuilder
+#################
 
 Automate the creation of `Vagrant base boxes`_.
 
@@ -20,12 +20,11 @@ Usage
 *****
 
 * Install `VirtualBox`_ and `Vagrant`_.
-* Install marmelune.vagrantboxbuilder. As an example with
-  ``pip install git+https://github.com/benoitbryon/marmelune.vagrantboxbuilder.git``
+* Install vagrantboxbuilder. As an example with
+  ``pip install git+https://github.com/benoitbryon/vagrantboxbuilder.git``
 * You got a ``vagrantboxbuilder`` command.
 * Get or create an operating system ISO which installs Vagrant requirements. As
-  an example, you can use `marmelune.debianisobuilder`_'s and its `preseed file
-  for Vagrant`_.
+  an example, you can use `debisogen`_'s and its `preseed file for Vagrant`_.
 * Or see ``vagrantboxbuilder --help`` for usage.
 * Run
   ``vagrantboxbuilder --iso=path/to/installer.iso --vagrant-box=path/to/output.box``
@@ -48,7 +47,7 @@ Vagrantboxbuilder...
 
 Customization of the VM for Vagrant is supposed to be fully performed during
 OS installation, i.e. the ISO file contains it all! That's why we suggest
-tools like `marmelune.debianisobuilder`_ to get the ISO.
+tools like `debisogen`_ to get the ISO.
 
 **********
 Contribute
@@ -60,8 +59,8 @@ Contribute
   * `Vagrant`_ version 1.0.2 (other versions have not been tested)
 
 * Clone the `code repository`_
-* ``cd marmelune.vagrantboxbuilder``
-* ``make install``
+* ``cd vagrantboxbuilder``
+* ``make develop``
 
 
 **********
@@ -72,13 +71,13 @@ References
 
 .. _`Vagrant base boxes`: http://vagrantup.com/v1/docs/base_boxes.html
 .. _`Code repository`:
-    https://github.com/benoitbryon/marmelune.vagrantboxbuilder
+    https://github.com/benoitbryon/vagrantboxbuilder
 .. _`Bugtracker`:
-    https://github.com/benoitbryon/marmelune.vagrantboxbuilder/issues
+    https://github.com/benoitbryon/vagrantboxbuilder/issues
 .. _`VirtualBox`: https://www.virtualbox.org/
 .. _`Vagrant`: http://vagrantup.com/
-.. _`marmelune.debianisobuilder`:
-    https://github.com/benoitbryon/marmelune.debianisobuilder
+.. _`debisogen`:
+    https://github.com/benoitbryon/debisogen
 .. _`preseed file for Vagrant`:
-   https://raw.github.com/benoitbryon/marmelune.debianisobuilder/master/etc/preseed-squeeze-vagrant-fr.cfg
+   https://raw.github.com/benoitbryon/debisogen/master/etc/preseed-vagrant.cfg
 .. _`Vagrantfile`: http://vagrantup.com/v1/docs/vagrantfile.html

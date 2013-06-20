@@ -5,7 +5,7 @@ import os
 import random
 import shutil
 
-from utils import execute_command, use_temp_dir
+from vagrantboxbuilder.utils import execute_command, use_temp_dir
 
 
 class VagrantBoxBuilder(object):
