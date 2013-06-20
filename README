@@ -7,14 +7,6 @@ Automate the creation of `Vagrant base boxes`_.
 .. warning:: This work is experimental.
 
 
-*********
-Resources
-*********
-
-* `Code repository`_
-* `Bugtracker`_
-
-
 *****
 Usage
 *****
@@ -49,6 +41,7 @@ Customization of the VM for Vagrant is supposed to be fully performed during
 OS installation, i.e. the ISO file contains it all! That's why we suggest
 tools like `debisogen`_ to get the ISO.
 
+
 **********
 Contribute
 **********
@@ -58,16 +51,23 @@ Contribute
   * `VirtualBox`_ version 4.1.10 (other versions have not been tested)
   * `Vagrant`_ version 1.0.2 (other versions have not been tested)
 
-* Clone the `code repository`_
-* ``cd vagrantboxbuilder``
+* ``git clone git@github.com:benoitbryon/vagrantboxbuilder.git``
+* ``cd vagrantboxbuilder/``
 * ``make develop``
 
 
 **********
-References
+Ressources
 **********
 
-.. target-note::
+* Documentation: https://github.com/benoitbryon/vagrantboxbuilder/
+* PyPI page: not released yet
+* Code repository: https://github.com/benoitbryon/vagrantboxbuilder
+* Bugtracker: https://github.com/benoitbryon/vagrantboxbuilder/issues
+* Continuous integration: not setup yet
+
+
+.. target-notes::
 
 .. _`Vagrant base boxes`: http://vagrantup.com/v1/docs/base_boxes.html
 .. _`Code repository`:
